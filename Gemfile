@@ -11,6 +11,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'dm-postgres-adapter'
   gem 'rack-flash3'
+  gem 'rest-client'
   gem 'rspec'
   gem 'rubocop'
   gem 'rubocop-rspec'

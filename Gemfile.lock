@@ -167,6 +167,7 @@ DEPENDENCIES
   database_cleaner
   dm-postgres-adapter
   rack-flash3
+  rest-client
   rspec
   rubocop
   rubocop-rspec

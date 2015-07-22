@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe Reply do
-
   context 'Checking DataMapper can create and delete entries' do
-
-    it 'Should be created and retrieved from the db' do
+    it 'should be created and retrieved from the db' do
       User.create(username: 'Big G',
                   name: 'Andy Gout',
                   email: 'example@test.com',
@@ -34,7 +32,5 @@ describe Reply do
       reply.destroy
       expect(Reply.count).to eq(0)
     end
-
   end
-
 end

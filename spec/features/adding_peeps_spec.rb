@@ -5,7 +5,6 @@ require_relative 'helpers/session'
 include SessionHelpers
 
 feature 'User adds a new peep' do
-
   scenario 'which is then viewed on their profile page' do
     sign_up
     add_peep('Peep #1')
@@ -13,5 +12,4 @@ feature 'User adds a new peep' do
     first(:link, 'Big_G').click
     expect(page).to have_content('Peep #1')
   end
-
 end

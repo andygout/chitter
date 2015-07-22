@@ -4,7 +4,6 @@ require_relative 'helpers/session'
 include SessionHelpers
 
 feature 'User views all peeps' do
-
   before(:each) do
     sign_up
     add_peep('Peep #1')
@@ -27,5 +26,4 @@ feature 'User views all peeps' do
     expect(page.first('li:nth-child(1)')).to have_content('Peep #2')
     expect(page.first('li:nth-child(2)')).to have_content('Peep #1')
   end
-
 end

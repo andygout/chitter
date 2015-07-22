@@ -4,7 +4,6 @@ require_relative 'helpers/session'
 include SessionHelpers
 
 feature 'User creates peeps' do
-
   before(:each) do
     sign_up
     add_peep('Peep #1')
@@ -28,5 +27,4 @@ feature 'User creates peeps' do
     expect(page.first('li:nth-child(3)')).to have_content('Reply by Charlie Plummer (aka Chazboy)')
     expect(page.first('li:nth-child(3)')).to have_content(/[A-Z][a-z]{5,8} [123]*[0-9] [A-Z][a-z]{2,8} [0-9]{4} at [1]*[0-9]:[0-5][0-9](A|P)M \([0-5][0-9] secs\)/)
   end
-
 end

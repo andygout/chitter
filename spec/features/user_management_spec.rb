@@ -4,7 +4,6 @@ require_relative 'helpers/session'
 include SessionHelpers
 
 feature 'User signs up' do
-
   scenario 'when being a new user visiting the site' do
     expect { sign_up }.to change(User, :count).by(1)
     expect(page).to have_content('Currently peeping as Andy Gout (aka Big_G)')
@@ -33,11 +32,9 @@ feature 'User signs up' do
     sign_up
     expect(page).to have_content('Currently peeping as Andy Gout (aka Big_G)')
   end
-
 end
 
 feature 'User signs in' do
-
   before(:each) do
     User.create(username: 'Big_G',
                 name: 'Andy Gout',
@@ -59,11 +56,9 @@ feature 'User signs in' do
     sign_in('example@test.com', 'non_match')
     expect(page).not_to have_content(('Welcome, Andy Gout (aka Big_G)'))
   end
-
 end
 
 feature 'User signs out' do
-
   before(:each) do
     User.create(username: 'Big G',
                 name: 'Andy Gout',
@@ -78,5 +73,18 @@ feature 'User signs out' do
     expect(page).to have_content('Good bye!')
     expect(page).not_to have_content('Welcome, Andy Gout (aka Big G)')
   end
+end
 
+feature 'User forgets password' do
+  before(:each) do
+    User.create(email: 'test@test.com', password: 'test', password_confirmation: 'test')
+  end
+
+  scenario 'User requests replacement password' do
+    visit '/sessions/new'
+    expect(page).to have_content('Forgot password?')
+    fill_in :forgot, with: 'test@test.com'
+    click_button 'Email token'
+    expect(page).to have_content('Token submitted')
+  end
 end
