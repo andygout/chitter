@@ -13,6 +13,7 @@ A Twitter clone that will allow the users to post messages to a public stream.
 Next Steps
 -------
 
+- Reinstate test for recovery token submission to pass Travis CI - current error reads: `Failure/Error: click_button 'Email token'` / `RestClient::Unauthorized:` / `401 Unauthorized`
 - Raise error if user tries to respond to own peep (can this also be enforced at DB level?).
 - Additional tests to ensure user feed page includes no other user's peeps.
 - Additional tests to ensure no blank entries for: username/name/email/pword/pword confirmation; peeps; replies (again, can this be enforced at DB level?).
