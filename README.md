@@ -8,16 +8,34 @@
 Chitter Challenge
 =================
 
+
 Challenge:
 -------
 
 A Twitter clone that will allow the users to post messages to a public stream.
 
 
+Technologies Used
+-------
+
+- Ruby (language) on Sinatra (Web Application Framework)
+- PostgreSQL Database (using DataMapper (Object Relational Mapper (ORM) written in Ruby))
+- Tested using RSpec (behaviour-driven development framework)
+- Rake gem (*While much of your application is built to (swiftly) respond to a web request, there are many scenarios where you would like to access and run pieces of your application outside of that request/response cycle. You may want to run maintenance tasks, periodic calculations, or reporting in your production environment, while in development, you may want to trigger your full test suite to run. The rake gem is Ruby’s most widely accepted solution for performing these types of tasks.*)
+- [Mailgun API](https://documentation.mailgun.com/) to send password recovery tokens
+
+
+Setup
+-------
+
+- Run site on local server: `rackup`
+- Run RSpec tests: `$ rspec`
+
+
 User stories:
 -------
 
-```sh
+```
 As a new user
 So that I can post messages on Chitter as me
 I want to sign up for Chitter
@@ -84,23 +102,6 @@ I want to be able to see a page that displays this alone and allows me to reply
 ```
 
 
-Technologies Used
--------
-
-- Ruby (language) on Sinatra (Web Application Framework)
-- PostgreSQL Database (using DataMapper (Object Relational Mapper (ORM) written in Ruby))
-- Tested using RSpec (behaviour-driven development framework)
-- Rake gem (*While much of your application is built to (swiftly) respond to a web request, there are many scenarios where you would like to access and run pieces of your application outside of that request/response cycle. You may want to run maintenance tasks, periodic calculations, or reporting in your production environment, while in development, you may want to trigger your full test suite to run. The rake gem is Ruby’s most widely accepted solution for performing these types of tasks.*)
-- [Mailgun API](https://documentation.mailgun.com/) to send password recovery tokens
-
-
-Setup
--------
-
-- Run site on local server: `rackup`
-- Run RSpec tests: `$ rspec`
-
-
 Learning
 -------
 
@@ -137,7 +138,9 @@ Next Steps
 Links:
 -------
 
-[Makers Academy Bookmark Manager tutorial](https://github.com/makersacademy/course/blob/master/bookmark_manager/bookmark_manager.md)
+[Makers Academy: Chitter Challenge brief](https://github.com/makersacademy/chitter-challenge)
+
+[Makers Academy: Bookmark Manager tutorial](https://github.com/makersacademy/course/blob/master/bookmark_manager/bookmark_manager.md)
 
 
 Database layout:
