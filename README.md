@@ -2,6 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/andygout/chitter-challenge/badge.png)](https://coveralls.io/r/andygout/chitter-challenge)
 
+[![Code Climate](https://codeclimate.com/github/andygout/chitter-challenge/badges/gpa.svg)](https://codeclimate.com/github/andygout/chitter-challenge)
+
 
 Chitter Challenge
 =================
