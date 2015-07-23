@@ -2,6 +2,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/andygout/chitter-challenge/badge.png)](https://coveralls.io/r/andygout/chitter-challenge)
 
+
 Chitter Challenge
 =================
 
@@ -10,36 +11,138 @@ Challenge:
 
 A Twitter clone that will allow the users to post messages to a public stream.
 
-Next Steps
+
+User stories:
 -------
 
-- Reinstate test for recovery token submission to pass Travis CI - current error reads: `Failure/Error: click_button 'Email token'` / `RestClient::Unauthorized:` / `401 Unauthorized`
-- Raise error if user tries to respond to own peep (can this also be enforced at DB level?).
-- Additional tests to ensure user feed page includes no other user's peeps.
-- Additional tests to ensure no blank entries for: username/name/email/pword/pword confirmation; peeps; replies (again, can this be enforced at DB level?).
-- Password recovery functionality.
-- Styling for sign-up/sign-in error msgs.
-- Styling: only display certain links ('Add Peep', 'Reply') when user is signed in.
-- Partials.
-- Deploy to Heroku.
+```sh
+As a new user
+So that I can post messages on Chitter as me
+I want to sign up for Chitter
+
+As a new user who loves their username
+So that I know my username is shared with no others
+I want the sign-up protocol to only allow me to use a unique username
+
+As a user who is ready to peep
+So that I can post messages on Chitter as me
+I want to log in to Chitter
+
+As a security conscious user
+So that I can avoid others posting messages on Chitter as me
+I want to log out of Chitter
+
+As a security conscious user
+So that others cannot log into my account
+I want to validate the login process with a secret password
+
+As a forgetful user
+So that I can reset my password if I forget it
+I want to be able to do so via a password recovery system
+
+As a user with something to share
+So that I can let people know what I am doing
+I want to post a message (peep) to chitter
+
+As a user who likes to keep up to date with others
+So that I can see what others are saying
+I want to see all peeps in reverse chronological order
+
+As a user who likes to know who has said what
+So that I can which peeps are attributed to which user
+I want this information displayed alongside each peep
+
+As a pedantic user
+So that I can better appreciate the context of a peep
+I want to see the time at which it was made
+
+As a sociable user
+So that I can reply to other users' peeps
+I want to be able to reply to their peeps
+
+As a socially curious user
+So that I can see replies to other peeps
+I want to be able to view those replies with attributed user and time of reply
+
+As a forgetful user
+So that I don't accidentally reply to my own peeps
+I do not want to be presented with that option
+
+As a user without much time
+So that I can see all peep info without having to be signed in
+I want that to be displayed regardless of being signed in/out
+
+As a user with an interest in other users
+So that I can see a page relating solely to a particular user
+I want to be able to see a page that displays their tweets alone
+
+As a user with an interest in specific peeps
+So that I can see a page relating solely to such with all associated replies
+I want to be able to see a page that displays this alone and allows me to reply
+```
+
 
 Technologies Used
 -------
 
 - Ruby (language) on Sinatra (Web Application Framework)
-- PostgreSQL Database (using DataMapper (Object Relational Mapper written in Ruby))
+- PostgreSQL Database (using DataMapper (Object Relational Mapper (ORM) written in Ruby))
 - Tested using RSpec (behaviour-driven development framework)
 - Rake gem (*While much of your application is built to (swiftly) respond to a web request, there are many scenarios where you would like to access and run pieces of your application outside of that request/response cycle. You may want to run maintenance tasks, periodic calculations, or reporting in your production environment, while in development, you may want to trigger your full test suite to run. The rake gem is Ruby’s most widely accepted solution for performing these types of tasks.*)
+- [Mailgun API](https://documentation.mailgun.com/) to send password recovery tokens
+
+
+Setup
+-------
+
+- Run site on local server: `rackup`
+- Run RSpec tests: `$ rspec`
+
+
+Learning
+-------
+
+- `controllers/users.rb`: Alternate method for updating user data below; updates the user directly rather than current method in codebase which retrieves user from database, reassigns the attributes, and then saves the user; introduction to principle of [dirty resources](http://stackoverflow.com/questions/8671446/what-is-a-dirty-resource).
+```
+post '/users/set_new_password' do
+  @password_token = params[:password_token]
+  @user = User.first(password_token: @password_token)
+  if @user.update(password: params[:password],
+                password_confirmation: params[:password_confirmation],
+                password_token: nil,
+                password_token_timestamp: nil)
+    flash[:notice] = 'Password has been reset'
+    redirect to('/')
+  else
+    flash.now[:errors] = @user.errors.full_messages
+    erb :'users/set_new_password'
+  end
+end
+```
+
+
+Next Steps
+-------
+
+- Reinstate test for recovery token submission to pass Travis CI - current error reads: `Failure/Error: click_button 'Email token'` / `RestClient::Unauthorized:` / `401 Unauthorized`
+- Raise error if user tries to respond to own peep (can this also be enforced at DB level?) (+ test)
+- Only display certain links ('Add Peep', 'Reply') when user is signed in (+ test)
+- Additional tests to ensure user feed page includes no other user's peeps
+- Additional tests to ensure no blank entries for: username/name/email/password/password confirmation; peeps; replies (again, can this be enforced at DB level?)
+- Deploy to Heroku
+
 
 Links:
 -------
 
 [Makers Academy Bookmark Manager tutorial](https://github.com/makersacademy/course/blob/master/bookmark_manager/bookmark_manager.md)
 
+
 Database layout:
 -------
 
 ![Screenshot DB Layout](/public/git_img/db_layout.png)
+
 
 Images:
 -------
@@ -70,59 +173,3 @@ Images:
 
 - Goodbye message
 ![Screenshot User Feed](/public/git_img/goodbye.png)
-
-Features:
--------
-
-```sh
-As a Maker
-So that I can post messages on Chitter as me
-I want to sign up for Chitter
-
-As a Maker
-So that I can post messages on Chitter as me
-I want to log in to Chitter
-
-As a Maker
-So that I can avoid others posting messages on Chitter as me
-I want to log out of Chitter
-
-As a maker
-So that I can let people know what I am doing
-I want to post a message (peep) to chitter
-
-As a maker
-So that I can see what others are saying
-I want to see all peeps in reverse chronological order
-
-As a maker
-So that I can better appreciate the context of a peep
-I want to see the time at which it was made
-```
-
-Notes on functionality:
-------
-
-* Drive the creation of your app using tests - either cucumber or rspec as you prefer
-* Makers sign up to chitter with their email, password, name and a user name (e.g. sam@makersacademy.com, s3cr3t, Samuel Russell Hampden Joseph, tansaku).
-* The username and email are unique.
-* Peeps (posts to chitter) have the name of the maker and their user handle.
-* Use bcrypt to secure the passwords.
-* Use data mapper and postgres to save the data.
-* You don't have to be logged in to see the peeps.
-* You only can peep if you are logged in.
-* Please ensure that you update your README to indicate the technologies used, and give instructions on how to install and run the tests
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
-
-Bonus:
------
-
-If you have time you can implement the following:
-
-* In order to start a conversation as a maker I want to reply to a peep from another maker.
-
-And/Or:
-
-* Work on the css to make it look good (we all like beautiful things).
-
-Good luck and let the chitter begin!
