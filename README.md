@@ -1,34 +1,35 @@
-[![Build Status](https://travis-ci.org/andygout/chitter-challenge.png)](https://travis-ci.org/andygout/chitter-challenge)
-
-[![Coverage Status](https://coveralls.io/repos/andygout/chitter-challenge/badge.png)](https://coveralls.io/r/andygout/chitter-challenge)
-
-[![Code Climate](https://codeclimate.com/github/andygout/chitter-challenge/badges/gpa.svg)](https://codeclimate.com/github/andygout/chitter-challenge)
+[![Build Status](https://travis-ci.org/andygout/chitter.png)](https://travis-ci.org/andygout/chitter)  [![Coverage Status](https://coveralls.io/repos/andygout/chitter/badge.png)](https://coveralls.io/r/andygout/chitter)  [![Code Climate](https://codeclimate.com/github/andygout/chitter/badges/gpa.svg)](https://codeclimate.com/github/andygout/chitter)
 
 
-Chitter Challenge
+Chitter
 =================
 
 
-Challenge:
+Brief:
 -------
 
-A Twitter clone that will allow the users to post messages to a public stream.
+A Twitter clone that will allow the users to post messages to a public stream
 
 
-Technologies Used
+Technologies used:
 -------
 
 - Ruby (language) on Sinatra (Web Application Framework)
 - PostgreSQL Database (using DataMapper (Object Relational Mapper (ORM) written in Ruby))
 - Tested using RSpec (behaviour-driven development framework)
-- Rake gem (*While much of your application is built to (swiftly) respond to a web request, there are many scenarios where you would like to access and run pieces of your application outside of that request/response cycle. You may want to run maintenance tasks, periodic calculations, or reporting in your production environment, while in development, you may want to trigger your full test suite to run. The rake gem is Ruby’s most widely accepted solution for performing these types of tasks.*)
+- Rake gem (*to run pieces of the application in development outside of the web request/response cycle (i.e. maintenance tasks, periodic calculations, reporting in production environment)*)
 - [Mailgun API](https://documentation.mailgun.com/) to send password recovery tokens
 
 
-Setup
+Site setup:
 -------
 
-- Run site on local server: `rackup`
+- Run site on local server: `$ rackup`
+
+
+Testing setup:
+-------
+
 - Run RSpec tests: `$ rspec`
 
 
