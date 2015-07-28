@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/andygout/chitter.png)](https://travis-ci.org/andygout/chitter)  [![Coverage Status](https://coveralls.io/repos/andygout/chitter/badge.png)](https://coveralls.io/r/andygout/chitter)  [![Code Climate](https://codeclimate.com/github/andygout/chitter/badges/gpa.svg)](https://codeclimate.com/github/andygout/chitter)
+[![Build Status](https://travis-ci.org/andygout/chitter.png)](https://travis-ci.org/andygout/chitter)  [![Coverage Status](https://coveralls.io/repos/andygout/chitter/badge.svg?branch=master&service=github)](https://coveralls.io/github/andygout/chitter?branch=master)  [![Code Climate](https://codeclimate.com/github/andygout/chitter/badges/gpa.svg)](https://codeclimate.com/github/andygout/chitter)
 
 
 Chitter
@@ -8,7 +8,7 @@ Chitter
 Brief:
 -------
 
-A Twitter clone that will allow the users to post messages to a public stream
+A Twitter clone that allows users to post short messages to a public stream
 
 
 Technologies used:
@@ -103,7 +103,7 @@ I want to be able to see a page that displays this alone and allows me to reply
 ```
 
 
-Learning
+Learning:
 -------
 
 - `controllers/users.rb`: Alternate method for updating user data below; updates the user directly rather than current method in codebase which retrieves user from database, reassigns the attributes, and then saves the user; introduction to principle of [dirty resources](http://stackoverflow.com/questions/8671446/what-is-a-dirty-resource).
@@ -125,7 +125,7 @@ end
 ```
 
 
-Next Steps
+Next steps:
 -------
 
 - Reinstate test for recovery token submission to pass Travis CI - current error reads: `Failure/Error: click_button 'Email token'` / `RestClient::Unauthorized:` / `401 Unauthorized`
@@ -153,29 +153,29 @@ Database layout:
 Images:
 -------
 
-- Sign up
+#### Sign up
 ![Screenshot Sign Up](/public/git_img/sign_up.png)
 
-- Sign up errors
+#### Sign up errors
 ![Screenshot Sign Up](/public/git_img/sign_up_error.png)
 
-- Home page
+#### Home page
 ![Screenshot Home Page](/public/git_img/home_page.png)
 
-- Sign in
+#### Sign in
 ![Screenshot Sign Up](/public/git_img/sign_in.png)
 
-- Sign in errors
+#### Sign in errors
 ![Screenshot Sign Up](/public/git_img/sign_in_error.png)
 
-- Add new peep
+#### Add new peep
 ![Screenshot Home Page](/public/git_img/add_new_peep.png)
 
-- Reply
+#### Reply
 ![Screenshot Home Page](/public/git_img/reply.png)
 
-- User feed
+#### User feed
 ![Screenshot User Feed](/public/git_img/user_feed.png)
 
-- Goodbye message
+#### Goodbye message
 ![Screenshot User Feed](/public/git_img/goodbye.png)
